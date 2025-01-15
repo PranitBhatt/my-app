@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 
 // "props" is how you can access the props that are being passed from the navbar for the app.js
 // we can send anything in the props like objects or links  
@@ -14,10 +14,10 @@ export default function Navbar(props) {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/">Home</a>
+            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">{props.aboutText}</a>
+            <Link className="nav-link" to="/about">{props.aboutText}</Link>
           </li>
         </ul>
         {/* <form className="d-flex" role="search">
