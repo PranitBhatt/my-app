@@ -11,7 +11,7 @@ function App() {
     if(mode==='light')
     {
       setMode('dark');
-      document.body.style.backgroundColor = 'grey';
+      document.body.style.backgroundColor = 'black';
     }
     else{
       setMode('light');
@@ -23,7 +23,7 @@ function App() {
       {/* Navbar is a Component and the title and aboutText are the props for that component */}
       <Navbar aboutText="About" title="Text Summary" mode={mode} toggleMode={toggleMode} />  
       <div className="container my-3">
-      <TextForm heading="Enter the text to analyze"/>
+      <TextForm heading="Enter the text to analyze"  mode={mode}/>
       {/* <About/> */}
       </div>
       </>
