@@ -18,6 +18,7 @@ export default function TextForm(props) {
       var text = document.getElementById("textarea")
       text.select();
       navigator.clipboard.writeText(text.value);
+      document.getSelection().removeAllRanges();
       props.showalert("Text Copied","success");
     }
     const handleemailclick = ()=>{
@@ -47,27 +48,27 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
     const [text,setText] = useState('');
-    const [emails,setEmail] = useState('Currently No emails Exatacted');
+    const [emails,setEmail] = useState('Currently No emails Extracted');
     //  setText("Enter valid text here");
   return (
     <>
     <div className='container' style={{color:props.mode==='dark'?'white':'black' }}>
         <h1 >{props.heading}</h1>
       <div className="mb-3">
-        <textarea className="form-control" value={text} onChange={handleOnchange} id="textarea" rows="10" style={{backgroundColor:props.mode==='dark'?'grey':'white', color:props.mode==='dark'?'white':'black' }} ></textarea>
+        <textarea className="form-control" value={text} onChange={handleOnchange} id="textarea" rows="10" style={{backgroundColor:props.mode==='dark'?'#4c4d5a':'white', color:props.mode==='dark'?'white':'black' }} ></textarea>
       </div>
-      <button className="btn btn-primary m-1" onClick={handleUpclick}>Convert to Uppercase</button>
-      <button className="btn btn-primary m-1" onClick={handlelowclick}>Convert to LowerCase</button>
-      <button className="btn btn-danger m-1" onClick={handleclearclick}>Clear Text</button>
-      <button className="btn btn-warning m-1" onClick={handleemailclick}>Extract Emails</button>
-      <button className="btn btn-info m-1" onClick={handlecopy}>Copy Text</button>
+      <button disabled={text.length===0} className="btn btn-primary m-1" onClick={handleUpclick}>Convert to Uppercase</button>
+      <button disabled={text.length===0} className="btn btn-primary m-1" onClick={handlelowclick}>Convert to LowerCase</button>
+      <button disabled={text.length===0} className="btn btn-danger m-1" onClick={handleclearclick}>Clear Text</button>
+      <button disabled={text.length===0} className="btn btn-warning m-1" onClick={handleemailclick}>Extract Emails</button>
+      <button disabled={text.length===0} className="btn btn-info m-1" onClick={handlecopy}>Copy Text</button>
     </div>
     <div className='container my-2' style={{color:props.mode==='dark'?'white':'black' }}>
         <h1>Your text Summary</h1>
-        <p>{text.split(" ").length} words and {text.length} characters </p>
-        <p>{0.008 * text.split(" ").length} Minutes read </p>
+        <p>{text.split(/\s+/ ).filter((element)=>{return element.length!==0}).length} words and {text.length} characters </p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes read </p>
         <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter Something in the textbox above to preview it here"}</p>
+        <p>{text.length>0?text:"Nothing to preview"}</p>
         <h2>Emails Preview</h2>
         <p>{emails}</p>
     </div>
