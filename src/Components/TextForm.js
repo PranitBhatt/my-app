@@ -5,18 +5,20 @@ export default function TextForm(props) {
         //console.log("UpperCase was clicked" +text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.showalert("Converted to UpperCase!","success");
 
     }
     const handlelowclick = ()=>{
         //console.log("Lowercase was clicked" +text);
         let newText = text.toLowerCase();
         setText(newText);
-
+        props.showalert("Converted to LowerCase!","success");
     }
     const handlecopy =()=>{
       var text = document.getElementById("textarea")
       text.select();
       navigator.clipboard.writeText(text.value);
+      props.showalert("Text Copied","success");
     }
     const handleemailclick = ()=>{
       //console.log("Lowercase was clicked" +text);
@@ -30,12 +32,14 @@ export default function TextForm(props) {
       }
       //let newText = text.toLowerCase();
       setEmail(commaSeparatedEmails);
+      props.showalert("Emails Extracted","success");
 
   }
     const handleclearclick = ()=>{
         //console.log("Lowercase was clicked" +text);
         let newText = '';
         setText(newText);
+        props.showalert("Cleared Data","success");
 
     }
     const handleOnchange = (event)=>{
